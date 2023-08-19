@@ -48,7 +48,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               ),
 
               // Using the Spread Operator
-              ...currentQuestion.getShuffledList().map((answer) {
+              ...currentQuestion.shuffledList.map((answer) {
                 return AnswerButton(answerText: answer, onTap: (){
                   nextQuestion(answer);
                 });

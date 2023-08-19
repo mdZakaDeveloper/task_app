@@ -10,7 +10,7 @@ class ResultsScreen extends StatelessWidget {
   final List<String> collectedOptions;
   final void Function() restartQuiz;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < collectedOptions.length; i++) {
@@ -29,11 +29,10 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final totalQuestions = questions.length;
-    final correctQuestions = summaryData.where((data) {
-      return data['user_selected'] == data['correct_answer'];
-    }).length;
+    final correctQuestions = summaryData
+        .where((data) => data['user_selected'] == data['correct_answer'])
+        .length;
 
     return SizedBox(
       width: double.infinity,

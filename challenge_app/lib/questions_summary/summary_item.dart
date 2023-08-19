@@ -9,16 +9,14 @@ class SummaryItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final String userAnswerInsertText = itemData['user_selected'] as String;
     final String correctAnswerInsertText = itemData['correct_answer'] as String;
-
 
     final isCorrectAnswer =
         itemData['user_selected'] == itemData['correct_answer'];
 
     return Padding(
-      padding: const  EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -43,7 +41,9 @@ class SummaryItems extends StatelessWidget {
                 Text(
                   ' Selected : Your Answer is $userAnswerInsertText',
                   style: GoogleFonts.inter(
-                    color: isCorrectAnswer ? Color.fromARGB(255, 5, 0, 47) : Color.fromARGB(255, 255, 0, 0),
+                    color: isCorrectAnswer
+                        ? const  Color.fromARGB(255, 5, 0, 47)
+                        : const Color.fromARGB(255, 255, 0, 119),
                     fontWeight: FontWeight.bold,
                   ),
                 ),

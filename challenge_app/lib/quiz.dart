@@ -7,9 +7,7 @@ import 'package:challenge_app/data/questions.dart';
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
   @override
-  State<Quiz> createState() {
-    return _QuizState();
-  }
+  State<Quiz> createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz> {
