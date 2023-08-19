@@ -8,15 +8,16 @@ import 'package:flutter/material.dart';
 
 class GradientBuilder extends StatelessWidget{
 
+   GradientBuilder(this.color1, this.color2,{super.key});
 
 
-    const GradientBuilder(this.color1, this.color2, {super.key});
 
-      const GradientBuilder.pallete({super.key}):
-    color1 = Colors.pinkAccent, color2 = Colors.orange;
 
-     final Color color1;
-     final Color color2;
+      GradientBuilder.pallete({super.key}):
+      color1 = Colors.pinkAccent, color2 = Colors.orange;
+
+      Color color1;
+      Color color2;
 
 
   @override
