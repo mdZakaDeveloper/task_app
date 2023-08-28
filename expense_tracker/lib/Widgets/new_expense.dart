@@ -1,9 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewExpense extends StatefulWidget {
@@ -101,7 +102,7 @@ class _NewExpenseState extends State<NewExpense> {
     }
   }
 
-  void _submitDetails() {
+  void _submitDetails() async {
     final amountEntered = double.tryParse(_amountController
         .text); // tryParse('Name') --> null, whereas: tryParse('1.20') --> 1.20
 
@@ -115,6 +116,26 @@ class _NewExpenseState extends State<NewExpense> {
       
       return;
     }
+    final url = Uri.https('expense-tracker-app-a22c8-default-rtdb.firebaseio.com', 'expenses.json');
+
+    String category = _selectedCategory.toString().split('.').last;
+    
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'title': _titleController.text,
+        'amount': amountEntered,
+        'date': dateSelected!.toString(),
+        'category': category
+      })
+    );
+
+    print(response.body);
+    print(response.statusCode);
+
+    
+    final Map<String, dynamic> resData = json.decode(response.body);
 
     widget.onAddExpense(Expense(
         title: _titleController.text,
